@@ -1,0 +1,7 @@
+<% @flats.each do |flat| %>
+<h2><%= flat.title %></h2>
+<div><%= flat.plz %> <%= flat.town %></div>
+<div><%= truncate(flat.discription, :length => 100) %></div>
+<br>
+<%= link_to "Ansehen", flat %>
+<% end %>

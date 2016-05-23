@@ -1,0 +1,15 @@
+<%= form_for @flat do |f| %>
+	<%= f.label :title %><br>
+	<%= f.text_field :title %>
+	<br> 
+	<%= f.label :discription %> 
+	<%= f.text_area :discription %>
+	<br>
+	<%= f.label :plz %>
+	<%= f.number_field :plz %>
+	<br>
+	<%= f.label :town %>
+	<%= f.text_field :town %>
+	<br>
+	<%= f.submit %>
+	<% end %>

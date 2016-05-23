@@ -1,0 +1,8 @@
+<h1><%= @flat.title %></h1>
+
+<div> <%= @flat.plz %> <%= @flat.town %> </div>
+<div> <%= @flat.discription %></div>
+
+<%= link_to "Inserat überarbeiten", edit_flat_path(@flat) %>
+
+<%= link_to "Löschen", flat_path(@flat), method: :delete, data: {confirm: "Inserat wirklich löschen?"} %>
