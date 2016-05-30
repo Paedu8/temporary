@@ -7,9 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "Home", root_path %>
-<%= link_to "Neues Inserat", new_flat_path %>
+
+<div class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<%= link_to "Startseite", root_path, class: "navbar-brand" %>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><%= link_to "Anmelden", new_user_registration_path %></li>
+			<% if user_signed_in? %>
+				<li><%= link_to "Ausloggen", destroy_user_session_path, method: :delete %></li>
+			<% else %>
+				<li><%= link_to "Einloggen", new_user_session_path %></li>
+			<% end %>
+		</ul>
+		<% if user_signed_in? %>
+			<p><%= link_to "Neue Wohnung erfassen", new_flat_path, class: "navbar-right navbar-text navbar-link" %></p>
+			<% end %>
+
+	</div>
+</div>
+
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<div class="container">
 <%= yield %>
+</div>
 
 </body>
 </html>

@@ -1,16 +1,17 @@
 class FlatsController < ApplicationController
   before_action :find_flat, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
   	@flats = Flat.all.order("created_at DESC")
   end
 
   def new
-  	@flat = Flat.new
+  	@flat = current_user.flats.build
   end
 
   def create
-  	@flat = Flat.new(flat_params)
+  	@flat = current_user.flats.build(flat_params)
 
   	if @flat.save
   		redirect_to @flat
@@ -47,6 +48,6 @@ class FlatsController < ApplicationController
 
 
   def flat_params
-  	params.require(:flat).permit(:title, :discription, :plz, :town)
+  	params.require(:flat).permit(:title, :description, :plz, :town)
   end
 end

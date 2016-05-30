@@ -1,15 +1,10 @@
-<%= form_for @flat do |f| %>
-	<%= f.label :title %><br>
-	<%= f.text_field :title %>
-	<br> 
-	<%= f.label :discription %> 
-	<%= f.text_area :discription %>
-	<br>
-	<%= f.label :plz %>
-	<%= f.number_field :plz %>
-	<br>
-	<%= f.label :town %>
-	<%= f.text_field :town %>
-	<br>
-	<%= f.submit %>
+<%= simple_form_for @flat do |f| %>
+	<%= f.input :title, label: "Titel" %>
+	<%= f.input :discription, label: "Beschreibung" %>
+	<%= f.input :plz, label: "Postleitzahl" %>
+	<%= f.input :town, town: "Ort" %>
+	<%= f.button :submit, label: "Veröffentlichen" %>
 	<% end %>
+
+	
+

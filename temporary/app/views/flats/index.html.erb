@@ -1,7 +1,10 @@
 <% @flats.each do |flat| %>
-<h2><%= flat.title %></h2>
-<div><%= flat.plz %> <%= flat.town %></div>
-<div><%= truncate(flat.discription, :length => 100) %></div>
-<br>
-<%= link_to "Ansehen", flat %>
+<div class="col-md-4">
+	<div class="message">
+		<h2 class="message-title"><%= link_to flat.title, flat_path(flat) %></h2>
+		<div><%= flat.plz %> <%= flat.town %></div>
+		<div><%= truncate(flat.discription, :length => 100) %></div>
+		<div><%= link_to "Inserat ansehen", flat_path(flat), class: "btn-custom" %></div>
+	</div>
+</div>
 <% end %>

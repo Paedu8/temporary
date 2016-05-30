@@ -1,8 +1,20 @@
-<h1><%= @flat.title %></h1>
+<div class="col-md-8 col-md-offset-2">
+	<div class="message-show">
+		<h1><%= @flat.title %></h1>
+		<p class="message-posted-by">Erstellt vor <%= time_ago_in_words (@flat.created_at) %> </p>
 
-<div> <%= @flat.plz %> <%= @flat.town %> </div>
-<div> <%= @flat.discription %></div>
+		<div class="message-desc"> <%= @flat.plz %> <%= @flat.town %> </div>
+		<div class="message-desc"> <%= @flat.discription %></div>
 
-<%= link_to "Inserat überarbeiten", edit_flat_path(@flat) %>
 
-<%= link_to "Löschen", flat_path(@flat), method: :delete, data: {confirm: "Inserat wirklich löschen?"} %>
+		<div class="links btn-group">
+		<%= link_to "Zurück", root_path, class: "btn btn-default"%>
+		<% if user_signed_in? %>
+		<% if @flat.user_id == current_user.id %>
+			<%= link_to "Inserat überarbeiten", edit_flat_path(@flat), class: "btn btn-default" %>
+			<%= link_to "Löschen", flat_path(@flat), method: :delete, data: {confirm: "Inserat wirklich löschen?"}, class: "btn btn-default" %>
+			<% end %>
+		<% end %>
+		</div>
+	</div>
+</div>
