@@ -1,10 +1,20 @@
+<h1 class="current-category"><%= params[:category] %></h1>
+
+<% if @flats.count == 0 %>
+<h2>Momentan sind keine Einträge für diese Kategorie vorhanden.</h2>
+<% else %>
+
+<div class="row">
+
 <% @flats.each do |flat| %>
-<div class="col-md-4">
-	<div class="message">
-		<h2 class="message-title"><%= link_to flat.title, flat_path(flat) %></h2>
-		<div><%= flat.plz %> <%= flat.town %></div>
-		<div><%= truncate(flat.discription, :length => 100) %></div>
-		<div><%= link_to "Inserat ansehen", flat_path(flat), class: "btn-custom" %></div>
+<div class="col-md-3">
+		<div><h2 class="flat-title"><%= link_to flat.title, flat_path(flat) %></h2></div>
+		<div><a href="/flats/<%= flat.id %>">
+			<%= image_tag flat.flat_image.url(:flat_index), class: "flat" %> </a></div>
+		<div class="flat-author"><%= flat.plz %> <%= flat.town %></div> 
+		<div class="flat-desc"><%= truncate(flat.discription, :length => 100) %></div>
 	</div>
+	<% end %>
 </div>
+
 <% end %>

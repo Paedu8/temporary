@@ -1,3 +1,16 @@
-<h1>Inserat überarbeiten</h1>
+<div class="col-md-8 col-md-offset-2">
+	<div class="new-flat-form">
 
-<%= render 'form' %>
+		<h1>Inserat überarbeiten</h1>
+
+		<%= simple_form_for @flat, :html => { :multipart => true } do |f| %>
+			<%= f.select :category_id, @categories %>
+			<%= f.input :title, label: "Titel" %>
+			<%= f.input :discription, label: "Beschreibung" %>
+			<%= f.input :plz, label: "Postleitzahl" %>
+			<%= f.input :town, label: "Ort" %>
+			<%= f.file_field :flat_image %>
+			<%= f.submit "Inserat aktualisieren", :class => "btn-custom2" %>
+			<% end %>
+	</div>
+</div>

@@ -21,9 +21,25 @@
 				<li><%= link_to "Einloggen", new_user_session_path %></li>
 			<% end %>
 		</ul>
-		<% if user_signed_in? %>
-			<p><%= link_to "Neue Wohnung erfassen", new_flat_path, class: "navbar-right navbar-text navbar-link" %></p>
+
+
+		<ul class="nav navbar-nav navbar-right">
+
+			<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Kategorie <span class="caret"></span></a>
+			<ul class="dropdown-menu" role="menu">
+				<% Category.all.each do |category| %>
+					<li class="<%= 'active' if params[:category] == category.name %>"><%= link_to category.name, root_path(category: category.name), class: "link" %>
+					</li>
+				<% end %>
+			</ul>
+			</li>
+
+			<% if user_signed_in? %>
+				<li><%= link_to "Neue Wohnung erfassen", new_flat_path %></li>
 			<% end %>
+			
+		</ul>
 
 	</div>
 </div>

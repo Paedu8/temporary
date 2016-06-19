@@ -1,9 +1,11 @@
-<%= simple_form_for @flat do |f| %>
+<%= simple_form_for @flat, :html => { :multipart => true } do |f| %>
+	<%= select_tag(:category_id, options_for_select(@categories), :prompt => "Kategorie") %>
 	<%= f.input :title, label: "Titel" %>
 	<%= f.input :discription, label: "Beschreibung" %>
 	<%= f.input :plz, label: "Postleitzahl" %>
 	<%= f.input :town, town: "Ort" %>
-	<%= f.button :submit, label: "Veröffentlichen" %>
+	<%= f.file_field :flat_image %>
+	<%= f.submit "Veröffentlichen", :class => "btn-custom2" %>
 	<% end %>
 
 	

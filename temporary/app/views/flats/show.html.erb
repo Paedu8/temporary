@@ -1,11 +1,18 @@
-<div class="col-md-8 col-md-offset-2">
-	<div class="message-show">
-		<h1><%= @flat.title %></h1>
-		<p class="message-posted-by">Erstellt vor <%= time_ago_in_words (@flat.created_at) %> </p>
+<div class="row">
+	<div class="col-md-4">
+		
+		<%= image_tag @flat.flat_image.url(:flat_show), class: "flat-show" %>
+	</div>
 
-		<div class="message-desc"> <%= @flat.plz %> <%= @flat.town %> </div>
-		<div class="message-desc"> <%= @flat.discription %></div>
+	<div class="col-md-8">
 
+		<div class="flat-info">
+		<div class="message-show"><h1><%= @flat.title %></h1></div>
+		<div class="flat-author">Erstellt vor <%= time_ago_in_words (@flat.created_at) %> </div>
+		<div class="flat-author"> <%= @flat.plz %> <%= @flat.town %> </div>
+		<div class="flat-desc"> <%= @flat.discription %></div>
+		<div class="flat-author">Kategorie: <%= @flat.category.name %></div>
+		</div>
 
 		<div class="links btn-group">
 		<%= link_to "Zurück", root_path, class: "btn btn-default"%>

@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525210445) do
+ActiveRecord::Schema.define(version: 20160607202514) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "flats", force: :cascade do |t|
     t.string   "title"
     t.text     "discription"
     t.integer  "plz"
     t.string   "town"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "user_id"
+    t.integer  "category_id"
+    t.string   "flat_image_file_name"
+    t.string   "flat_image_content_type"
+    t.integer  "flat_image_file_size"
+    t.datetime "flat_image_updated_at"
   end
 
   create_table "users", force: :cascade do |t|

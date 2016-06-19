@@ -3,15 +3,22 @@ class FlatsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-  	@flats = Flat.all.order("created_at DESC")
+    if params[:category].blank?
+  	 @flats = Flat.all.order("created_at DESC")
+    else
+      @category_id = Category.find_by(name: params[:category]).id
+      @flats = Flat.where(:category_id => @category_id).order("created_at DESC")
+    end
   end
 
   def new
   	@flat = current_user.flats.build
+    @categories = Category.all.map{ |c| [c.name, c.id]}
   end
 
   def create
   	@flat = current_user.flats.build(flat_params)
+    @flat.category_id = params[:category_id]
 
   	if @flat.save
   		redirect_to @flat
@@ -24,10 +31,11 @@ class FlatsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all.map{ |c| [c.name, c.id]}
   end
 
   def update
-
+    @flat.category_id = params[:category_id]
   	if @flat.update(flat_params)
   		redirect_to @flat
   	else
@@ -48,6 +56,6 @@ class FlatsController < ApplicationController
 
 
   def flat_params
-  	params.require(:flat).permit(:title, :description, :plz, :town)
+  	params.require(:flat).permit(:title, :description, :plz, :town, :category_id, :flat_image)
   end
 end
